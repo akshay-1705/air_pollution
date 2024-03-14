@@ -22,9 +22,11 @@ module V1
             ::Location.create!(response)
 
             render_success
-          rescue StandardError
-            # Notify using bugsnag
-            render_error('An error occurred while saving location')
+          rescue StandardError => e
+            Rails.logger.info("err: #{e.message}")
+            Rails.logger.info("err: #{e.backtrace.join("\n")}")
+            # Notify using bugsnag also
+            render_error(message: 'An error occurred while saving location')
           end
         end
       end
