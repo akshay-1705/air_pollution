@@ -12,6 +12,17 @@ gem "sprockets-rails"
 # Use postgres as the database for Active Record
 gem 'pg', '~> 1.5.4'
 
+# Pretty prints Ruby objects
+gem 'awesome_print', '~> 1.9.2'
+
+# For RESTful APIs
+gem 'grape', '~> 1.8.0'
+gem 'grape-roar', '~> 0.4.1'
+gem 'roar', '~> 1.1.1'
+
+# For http calls
+gem 'httparty'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
