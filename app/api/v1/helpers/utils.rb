@@ -22,11 +22,6 @@ module V1
       def rack_code(symbol)
         Rack::Utils::SYMBOL_TO_STATUS_CODE[symbol.to_sym]
       end
-
-      params :pagination do
-        optional :page, type: Integer, default: 1, allow_blank: false, values: ->(v) { v.positive? }
-        optional :per_page, type: Integer, default: 20, allow_blank: false, values: ->(v) { v.positive? }
-      end
     end
   end
 end

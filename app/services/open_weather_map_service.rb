@@ -9,13 +9,15 @@ class OpenWeatherMapService
   end
 
   def get_coordinates!(zip, country_code)
-    params = { zip: "#{zip} #{country_code}" }
-    response = self.class.get('/geo/1.0/zip', @options.merge(query: params))
+    params = { zip: "#{zip},#{country_code}" }
+    @options[:query].merge!(params)
+    response = self.class.get('/geo/1.0/zip', @options)
 
-    unless response.success?
+    # Raise exception if error code is not 404.
+    if !response.success? && response.code != 404
       raise StandardError, "Error retrieving coordinates data: #{response.code} - #{response.body}"
     end
 
-    JSON.parse(response.body)
+    response
   end
 end

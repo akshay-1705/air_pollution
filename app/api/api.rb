@@ -20,22 +20,12 @@ class Api < Grape::API
     end
   end
 
-  mount V1::Base
-
-  # Error handling
-  rescue_from ActiveRecord::RecordNotFound do
-    error!({ message: 'Record Not Found' }, 404)
-  end
-
-  rescue_from Grape::Exceptions::ValidationErrors do |err|
-    error!({ message: "Invalid params, #{err.message}" }, 402)
-  end
-
-  rescue_from StandardError do |err|
-    Rails.logger.info("err: #{err.message}")
-    Rails.logger.info("err: #{err.backtrace.join("\n")}")
+  rescue_from StandardError do |_err|
+    # Notify developers using bugsnag
     error!({ message: 'Internal server error' }, 500)
   end
+
+  mount V1::Base
 
   ## keep this at the bottom.
   route :any, '*path' do
