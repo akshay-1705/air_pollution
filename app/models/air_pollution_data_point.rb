@@ -8,7 +8,7 @@ class AirPollutionDataPoint < ApplicationRecord
 
   def self.seed!(data, location)
     aqi = data['main']['aqi']
-    received_at = Time.zone.at(data['dt'])
+    received_at = Time.zone.at(data['dt'].to_i)
 
     location.air_pollution_data_points.create!(aqi: aqi, received_at: received_at, components: data['components'])
   end

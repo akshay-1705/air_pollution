@@ -20,6 +20,10 @@ class Api < Grape::API
     end
   end
 
+  rescue_from Grape::Exceptions::ValidationErrors do |err|
+    error!({ message: "Invalid params, #{err.message}" }, 402)
+  end
+
   rescue_from StandardError do |_err|
     # Notify developers using bugsnag
     error!({ message: 'Internal server error' }, 500)
