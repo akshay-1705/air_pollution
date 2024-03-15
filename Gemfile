@@ -44,6 +44,9 @@ gem "redis", "~> 4.0"
 # Use sidekiq to run background jobs
 gem 'sidekiq', '~> 7.0'
 
+# Use sidekiq cron to run crons
+gem "sidekiq-cron"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
