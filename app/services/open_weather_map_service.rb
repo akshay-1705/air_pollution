@@ -34,4 +34,19 @@ class OpenWeatherMapService
 
     response
   end
+
+  def get_history_air_pollution_data!(lat, lon, start_time, end_time)
+    # For large intervals this will take too much time, should add some restriction.
+    params = { lat: lat, lon: lon, start: start_time, end: end_time }
+    @options[:query].merge!(params)
+
+    response = self.class.get('/data/2.5/air_pollution/history', @options)
+
+    # Raise exception if error code is not 404.
+    if !response.success? && response.code != 404
+      raise StandardError, "Error retrieving location data: #{response.code} - #{response.body}"
+    end
+
+    response
+  end
 end

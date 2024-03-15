@@ -44,9 +44,7 @@
 	Params: zip and country code (both required)
 	This API fetches location details using openweathermap API and saves into the database.
 	This API is idempotent.
+	After location data is saved. Run `rake db:seed_air_pollution_data` to seed history air pollution data
 
 # Rspecs
 	Run `bundle exec rspec` to run the rspecs
-
-
-

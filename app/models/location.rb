@@ -13,4 +13,25 @@ class Location < ApplicationRecord
       country_code: data['country']
     )
   end
+
+  def self.average_aqi_per_location
+    ::Location.joins(:air_pollution_data_points)
+              .group('locations.zip')
+              .average(:aqi)
+              .transform_values { |value| value.to_f.round(2) }
+  end
+
+  def self.average_aqi_per_state
+    ::Location.joins(:air_pollution_data_points)
+              .group('locations.name')
+              .average(:aqi)
+              .transform_values { |value| value.to_f.round(2) }
+  end
+
+  def self.average_aqi_per_month_per_location
+    Location.joins(:air_pollution_data_points)
+            .group('locations.zip', "EXTRACT(MONTH FROM air_pollution_data_points.received_at) || '-' || EXTRACT(YEAR FROM air_pollution_data_points.received_at)")
+            .average('air_pollution_data_points.aqi')
+            .transform_values { |value| value.to_f.round(2) }
+  end
 end
