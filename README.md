@@ -1,3 +1,12 @@
+# Summary
+	The Air Pollution application retrieves Air Quality Index (AQI) data for various locations using the OpenWeatherMap APIs. It has the following components:
+	------------
+	1. Location API: This API accepts a zip code and country code to store a location in the database.
+	2. Cron Job: A cron job runs every 30 seconds to fetch AQI data for all locations stored in the database. This ensures that the application stays up-to-date with the latest AQI information.
+	3. Rake Task: There is a rake task responsible for seeding historical AQI data for the past year. This ensures that the application has historical data for analysis and reporting purposes.
+	------------
+	By utilizing these components, the Air Pollution application efficiently manages location data and regularly updates AQI information, providing users with accurate and timely air quality information.
+
 # Versions
 	* Ruby: 3.0.0
 	* Rails: 7.0.8
