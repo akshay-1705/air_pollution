@@ -21,7 +21,7 @@ class Api < Grape::API
   end
 
   rescue_from Grape::Exceptions::ValidationErrors do |err|
-    error!({ message: "Invalid params, #{err.message}" }, 402)
+    error!({ message: "Invalid params, #{err.message}", success: false }, 422)
   end
 
   rescue_from StandardError do |_err|

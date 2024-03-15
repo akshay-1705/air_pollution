@@ -24,7 +24,7 @@ RSpec.describe 'V1::Location API', type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['success']).to eq(false)
-        expect(JSON.parse(response.body)['message']).to eq('Zip/country code cannot be empty')
+        expect(JSON.parse(response.body)['message']).to eq('Invalid params, zip is empty, country_code is empty')
       end
     end
 
