@@ -15,12 +15,12 @@ module V1
           render_error(message: 'Zip/country code cannot be empty')
         else
           # Env independent creds for now
-          api_key = Rails.application.credentials.config[:open_weather_map_key]
-          open_weather_map_service = OpenWeatherMapService.new(api_key)
+          open_weather_map_service = OpenWeatherMapService.new
           response = open_weather_map_service.get_coordinates!(params[:zip], params[:country_code])
 
           if response.success?
-            ::Location.seed!(response)
+            data = JSON.parse(response.body)
+            ::Location.seed!(data)
             render_success
           else
             render_error(message: "Error retrieving coordinates data: #{response.code} - #{response.body}")

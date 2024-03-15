@@ -2,6 +2,7 @@
 
 class Location < ApplicationRecord
   validates :name, :zip, :country_code, :latitude, :longitude, presence: true
+  has_many :air_pollution_data_points
 
   def self.seed!(data)
     find_or_create_by!(

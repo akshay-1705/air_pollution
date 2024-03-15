@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_14_185355) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_15_121946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "air_pollution_data_points", force: :cascade do |t|
+    t.integer "aqi"
+    t.bigint "location_id"
+    t.datetime "received_at"
+    t.jsonb "components", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aqi"], name: "index_air_pollution_data_points_on_aqi"
+    t.index ["location_id"], name: "index_air_pollution_data_points_on_location_id"
+    t.index ["received_at"], name: "index_air_pollution_data_points_on_received_at"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
