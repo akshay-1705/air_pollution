@@ -14,7 +14,7 @@
 	* See Gemfile for other gem versions
 
 
-# Setup (TODO: Add .example files for configurations)
+# Setup
 	* Clone the repo using git repo clone
 	* Download and install postgres client using: https://www.postgresql.org/download/
 	* Create database air_pollution_development and air_pollution_test using psql
