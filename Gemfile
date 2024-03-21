@@ -12,6 +12,17 @@ gem "sprockets-rails"
 # Use postgres as the database for Active Record
 gem 'pg', '~> 1.5.4'
 
+# Pretty prints Ruby objects
+gem 'awesome_print', '~> 1.9.2'
+
+# For RESTful APIs
+gem 'grape', '~> 1.8.0'
+gem 'grape-roar', '~> 0.4.1'
+gem 'roar', '~> 1.1.1'
+
+# For http calls
+gem 'httparty'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -29,6 +40,12 @@ gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
+
+# Use sidekiq to run background jobs
+gem 'sidekiq', '~> 7.0'
+
+# Use sidekiq cron to run crons
+gem "sidekiq-cron"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -51,6 +68,10 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  # Test cases
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'factory_bot_rails'
 end
 
 group :development do
